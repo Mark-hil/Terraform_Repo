@@ -1,0 +1,3 @@
+lampstack/terraform.tfstate
+lampstack/terraform.tfstate.*
+lampstack/.terraform/*
