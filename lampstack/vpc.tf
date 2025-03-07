@@ -57,7 +57,7 @@ resource "aws_nat_gateway" "nat" {
 }
 
 resource "aws_eip" "nat" {
-  domain = "vpc"  # Replace `vpc = true` with `domain = "vpc"`
+  domain = "vpc"  
 }
 
 resource "aws_route_table" "public" {

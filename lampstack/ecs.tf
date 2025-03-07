@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "fargate_task" {
   container_definitions = jsonencode([
     {
       name      = "hospital_app"
-      image     = "markhill97/hospital_app:v1.3.2"  # Replace with your Docker Hub image
+      image     = "markhill97/hospital_app:v1.3.1"  # Replace with your Docker Hub image
       essential = true
       portMappings = [
         {
@@ -21,6 +21,14 @@ resource "aws_ecs_task_definition" "fargate_task" {
           hostPort      = 80
         }
       ]
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          awslogs-group         = "/ecs/fargate-task"
+          awslogs-region       = "eu-west-1"  # Replace with your region
+          awslogs-stream-prefix = "ecs"
+        }
+      }
       environment = [
         {
           name  = "DB_SERVER"
@@ -28,15 +36,15 @@ resource "aws_ecs_task_definition" "fargate_task" {
         },
         {
           name  = "DB_USER"
-          value = "admin"
+          value = var.db_username  # Use the variable
         },
         {
           name  = "DB_PASS"
-          value = "admin_123456"  # Replace with your RDS password
+          value = var.db_password  # Use the variable
         },
         {
           name  = "DB_NAME"
-          value = "hms"
+          value = var.db_name  # Use the variable
         }
       ]
     }
