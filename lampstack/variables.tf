@@ -18,3 +18,13 @@ variable "Zone_id" {
   description = "Id of your hosted zone"
   type        = string
 }
+
+variable "protocol" {
+  description = "Protocol for the SNS subscription"
+  type        = string
+}
+
+variable "endpoint" {
+  description = "Endpoint for the SNS subscription"
+  type        = string
+}

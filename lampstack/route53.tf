@@ -1,6 +1,6 @@
 # Route 53 Record for the ALB
 resource "aws_route53_record" "app" {
-  zone_id = var.Zone_id # Replace with your existing hosted zone ID
+  zone_id = "Z1047104T79A1B7OOZH0" # Replace with your existing hosted zone ID
   name    = "hms.com"  # Replace with your domain name
   type    = "A"
 
