@@ -125,7 +125,7 @@ Provides container registry with:
 
 1. **Clone this repository**:
    ```bash
-   git clone [<repository-url>](https://github.com/Mark-hil/Terraform_Repo/edit/main/lampstack-with-modules)
+   git clone [(https://github.com/Mark-hil/Terraform_Repo/edit/main/lampstack-with-modules)]
    cd lampstack-with-modules
    ```
 
