@@ -1,3 +1,11 @@
 lampstack/terraform.tfstate
 lampstack/terraform.tfstate.*
 lampstack/.terraform/*
+
+lampstack-with-modules/terraform.tfstate
+lampstack-with-modules/terraform.tfstate.*
+lampstack-with-modules/.terraform
+
+hospital-app-terraform-ecr/terraform.tfstate
+hospital-app-terraform-ecr/terraform.tfstate.*
+hospital-app-terraform-ecr/.terraform/*

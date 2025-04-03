@@ -1,0 +1,5 @@
+vpc_id        = "vpc-0c7d9098495a15aed"
+instance_type = "t2.large"
+ami           = "ami-08f9a9c699d2ab3f9"
+key_pair      = "test-niginx"
+subnet_id     = "subnet-0996ceec814586d03"

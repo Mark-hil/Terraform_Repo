@@ -1,0 +1,46 @@
+[1mProject:[22m Mark-hil/Terraform_Repo/new-lab3/plan.json
+
+ [4mName[24m                                                            [4mMonthly Qty[24m  [4mUnit[24m                    [4mMonthly Cost[24m   
+                                                                                                                     
+ [1mmodule.alb.aws_alb.ecs_alb[22m                                                                                          
+ [2m├─[22m Application load balancer                                            730  hours                         $18.40   
+ [2m└─[22m Load balancer capacity units                           Monthly cost depends on usage: $5.84 per LCU              
+                                                                                                                     
+ [1mmodule.ecs.aws_ecs_service.app[22m                                                                                      
+ [2m├─[22m Per GB per hour                                                        1  GB                             $3.24   
+ [2m└─[22m Per vCPU per hour                                                    0.5  CPU                           $14.78   
+                                                                                                                     
+ [1mmodule.rds.aws_db_instance.main[22m                                                                                     
+ [2m├─[22m Database instance (on-demand, Single-AZ, db.t3.micro)                730  hours                         $13.14   
+ [2m└─[22m Storage (general purpose SSD, gp2)                                    20  GB                             $2.54   
+                                                                                                                     
+ [1mmodule.cloudwatch.aws_cloudwatch_log_group.ecs_logs[22m                                                                 
+ [2m├─[22m Data ingested                                          Monthly cost depends on usage: $0.57 per GB               
+ [2m├─[22m Archival Storage                                       Monthly cost depends on usage: $0.03 per GB               
+ [2m└─[22m Insights queries data scanned                          Monthly cost depends on usage: $0.0057 per GB             
+                                                                                                                     
+ [1mmodule.ecr.aws_ecr_repository.app_repo[22m                                                                              
+ [2m└─[22m Storage                                                Monthly cost depends on usage: $0.10 per GB               
+                                                                                                                     
+ [1mmodule.s3.aws_s3_bucket.storage[22m                                                                                     
+ [2m└─[22m Standard                                                                                                         
+ [2m   ├─[22m Storage                                             Monthly cost depends on usage: $0.023 per GB              
+ [2m   ├─[22m PUT, COPY, POST, LIST requests                      Monthly cost depends on usage: $0.005 per 1k requests     
+ [2m   ├─[22m GET, SELECT, and all other requests                 Monthly cost depends on usage: $0.0004 per 1k requests    
+ [2m   ├─[22m Select data scanned                                 Monthly cost depends on usage: $0.002 per GB              
+ [2m   └─[22m Select data returned                                Monthly cost depends on usage: $0.0007 per GB             
+                                                                                                                     
+[1m OVERALL TOTAL[22m                                                                                             $52.10 
+
+*Usage costs can be estimated by updating Infracost Cloud settings, see docs for other options.
+
+──────────────────────────────────
+19 cloud resources were detected:
+∙ 6 were estimated
+∙ 13 were free
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Project                                            ┃ Baseline cost ┃ Usage cost* ┃ Total cost ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━╋━━━━━━━━━━━━┫
+┃ Mark-hil/Terraform_Repo/new-lab3/plan.json         ┃           $52 ┃           - ┃        $52 ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━┻━━━━━━━━━━━━┛
