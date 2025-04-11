@@ -1,19 +1,41 @@
+#####################################
+# VPC Outputs
+#####################################
 output "vpc_id" {
-  value = aws_vpc.main.id
+  description = "ID of the created VPC"
+  value       = aws_vpc.main.id
 }
 
+output "vpc_cidr" {
+  description = "CIDR block of the created VPC"
+  value       = aws_vpc.main.cidr_block
+}
+
+#####################################
+# Subnet Outputs
+#####################################
 output "public_subnets" {
-  value = aws_subnet.public[*].id
+  description = "List of IDs of the public subnets"
+  value       = aws_subnet.public[*].id
 }
 
-# output "private_subnets" {
-#   value = aws_subnet.private[*].id
-# }
+output "public_subnet_cidrs" {
+  description = "List of CIDR blocks of the public subnets"
+  value       = aws_subnet.public[*].cidr_block
+}
 
-# output "default_sg_id" {
-#   value = aws_security_group.default.id
-# }
+#####################################
+# Security Group Outputs
+#####################################
 output "default_sg_id" {
   description = "ID of the default security group"
   value       = aws_security_group.default.id
+}
+
+#####################################
+# Route Table Outputs
+#####################################
+output "public_route_table_id" {
+  description = "ID of the public route table"
+  value       = aws_route_table.public.id
 }

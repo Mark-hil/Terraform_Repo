@@ -1,3 +1,6 @@
+#####################################
+# Provider Configuration
+#####################################
 terraform {
   required_providers {
     kubernetes = {
@@ -17,16 +20,30 @@ provider "kubernetes" {
   }
 }
 
+#####################################
+# Namespace Configuration
+#####################################
 resource "kubernetes_namespace" "app" {
   metadata {
     name = var.namespace
+    labels = {
+      name = var.namespace
+      env  = var.environment_variables["ENV"]
+    }
   }
 }
 
+#####################################
+# Application Deployment
+#####################################
 resource "kubernetes_deployment" "app" {
   metadata {
     name      = var.app_name
     namespace = kubernetes_namespace.app.metadata[0].name
+    labels = {
+      app = var.app_name
+      env = var.environment_variables["ENV"]
+    }
   }
 
   spec {
@@ -42,6 +59,7 @@ resource "kubernetes_deployment" "app" {
       metadata {
         labels = {
           app = var.app_name
+          env = var.environment_variables["ENV"]
         }
       }
 
@@ -50,6 +68,7 @@ resource "kubernetes_deployment" "app" {
           image = var.container_image
           name  = var.app_name
 
+          # Resource limits and requests
           resources {
             limits = {
               cpu    = "500m"
@@ -61,6 +80,7 @@ resource "kubernetes_deployment" "app" {
             }
           }
 
+          # Environment variables
           dynamic "env" {
             for_each = var.environment_variables
             content {
@@ -69,14 +89,17 @@ resource "kubernetes_deployment" "app" {
             }
           }
 
+          # Container port
           port {
-            container_port = var.container_port
+            container_port = coalesce(var.container_port, local.ports.app.container)
+            name          = "http"
           }
 
+          # Health checks
           readiness_probe {
             http_get {
               path = var.health_check_path
-              port = var.container_port
+              port = coalesce(var.container_port, local.ports.app.container)
             }
             initial_delay_seconds = 10
             period_seconds        = 5
@@ -88,7 +111,7 @@ resource "kubernetes_deployment" "app" {
           liveness_probe {
             http_get {
               path = var.health_check_path
-              port = var.container_port
+              port = coalesce(var.container_port, local.ports.app.container)
             }
             initial_delay_seconds = 60
             period_seconds        = 10
