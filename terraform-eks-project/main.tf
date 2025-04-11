@@ -50,7 +50,7 @@ module "security_group" {
 module "eks" {
   source          = "./modules/eks"
   vpc_id          = module.vpc.vpc_id
-  private_subnets = module.vpc.private_subnets
+  private_subnets = module.vpc.public_subnets # Using public subnets for lab environment
   cluster_name    = "${var.env_prefix}-cluster"
   tags            = local.common_tags
 }
@@ -63,14 +63,6 @@ module "ec2" {
   tags            = local.common_tags
 }
 
-#####################################
-# Monitoring
-#####################################
-module "monitoring" {
-  source         = "./modules/monitoring"
-  log_group_name = "/aws/eks/${module.eks.cluster_name}/cluster"
-  tags           = local.common_tags
-}
 #####################################
 # CloudWatch Monitoring
 #####################################
@@ -93,21 +85,18 @@ locals {
 # Kubernetes
 #####################################
 module "k8s" {
-  source = "./modules/k8s"
-
+  source                 = "./modules/k8s"
   cluster_endpoint       = module.eks.cluster_endpoint
   cluster_ca_certificate = module.eks.cluster_ca_certificate
   cluster_name           = module.eks.cluster_name
-
-  # Application specific variables
-  app_name        = "poll-app"
-  container_image = "markhill97/poll_app:20241216102148"
-  namespace       = "poll-app"
-  replicas        = 2
-  container_port  = 80
-  service_port    = 80
-  service_type    = "LoadBalancer"
-
+  namespace              = "app"
+  app_name               = "poll-app"
+  container_image        = "godcandidate/qr-code-app:latest"
+  container_port         = 80
+  service_port           = 80
+  service_type           = "LoadBalancer"
+  health_check_path      = "/"
+  replicas               = 1
   environment_variables = {
     ENV      = "production"
     APP_NAME = "poll-app"

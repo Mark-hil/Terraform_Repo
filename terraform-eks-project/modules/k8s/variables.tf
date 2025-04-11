@@ -32,7 +32,7 @@ variable "container_image" {
 variable "replicas" {
   description = "Number of pod replicas"
   type        = number
-  default     = 2
+  default     = 1
 }
 
 variable "cpu_limit" {
@@ -84,7 +84,7 @@ variable "health_check_path" {
 }
 
 variable "environment_variables" {
-  description = "Environment variables for the application"
+  description = "Environment variables for the container"
   type        = map(string)
   default     = {}
 }

@@ -52,12 +52,12 @@ resource "kubernetes_deployment" "app" {
 
           resources {
             limits = {
-              cpu    = var.cpu_limit
-              memory = var.memory_limit
+              cpu    = "500m"
+              memory = "512Mi"
             }
             requests = {
-              cpu    = var.cpu_request
-              memory = var.memory_request
+              cpu    = "250m"
+              memory = "256Mi"
             }
           }
 
@@ -73,13 +73,27 @@ resource "kubernetes_deployment" "app" {
             container_port = var.container_port
           }
 
+          readiness_probe {
+            http_get {
+              path = var.health_check_path
+              port = var.container_port
+            }
+            initial_delay_seconds = 10
+            period_seconds        = 5
+            failure_threshold     = 3
+            success_threshold    = 1
+            timeout_seconds      = 1
+          }
+
           liveness_probe {
             http_get {
               path = var.health_check_path
               port = var.container_port
             }
-            initial_delay_seconds = 30
+            initial_delay_seconds = 60
             period_seconds        = 10
+            failure_threshold     = 3
+            timeout_seconds      = 1
           }
         }
       }
