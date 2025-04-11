@@ -1,0 +1,86 @@
+2025-04-10T17:05:11.056Z [INFO]  Terraform version: 1.10.5
+2025-04-10T17:05:11.056Z [DEBUG] using github.com/hashicorp/go-tfe v1.70.0
+2025-04-10T17:05:11.056Z [DEBUG] using github.com/hashicorp/hcl/v2 v2.23.0
+2025-04-10T17:05:11.056Z [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2025-04-10T17:05:11.056Z [DEBUG] using github.com/zclconf/go-cty v1.16.2
+2025-04-10T17:05:11.056Z [INFO]  Go runtime version: go1.23.3
+2025-04-10T17:05:11.056Z [INFO]  CLI args: []string{"terraform", "init"}
+2025-04-10T17:05:11.057Z [DEBUG] Attempting to open CLI config file: /home/mark-hill/.terraformrc
+2025-04-10T17:05:11.057Z [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2025-04-10T17:05:11.057Z [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2025-04-10T17:05:11.057Z [DEBUG] ignoring non-existing provider search directory /home/mark-hill/.terraform.d/plugins
+2025-04-10T17:05:11.057Z [DEBUG] ignoring non-existing provider search directory /home/mark-hill/.local/share/terraform/plugins
+2025-04-10T17:05:11.057Z [DEBUG] ignoring non-existing provider search directory /usr/share/ubuntu/terraform/plugins
+2025-04-10T17:05:11.057Z [DEBUG] ignoring non-existing provider search directory /usr/local/share/terraform/plugins
+2025-04-10T17:05:11.057Z [DEBUG] ignoring non-existing provider search directory /usr/share/terraform/plugins
+2025-04-10T17:05:11.057Z [DEBUG] ignoring non-existing provider search directory /var/lib/snapd/desktop/terraform/plugins
+2025-04-10T17:05:11.058Z [INFO]  CLI command args: []string{"init"}
+2025-04-10T17:05:11.062Z [DEBUG] checking for provisioner in "."
+2025-04-10T17:05:11.063Z [DEBUG] checking for provisioner in "/usr/local/bin"
+2025-04-10T17:05:11.064Z [DEBUG] backend-s3.aws-base: Resolving credentials provider: tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate
+2025-04-10T17:05:11.064Z [DEBUG] backend-s3.aws-base: Loading configuration: tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate
+2025-04-10T17:05:11.064Z [DEBUG] backend-s3.aws-base: Retrieving credentials: tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate
+2025-04-10T17:05:11.065Z [INFO]  backend-s3.aws-base: Retrieved credentials: tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate tf_aws.credentials_source="SharedConfigCredentials: /home/mark-hill/.aws/credentials"
+2025-04-10T17:05:11.065Z [DEBUG] backend-s3.aws-base: Loading configuration: tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate
+2025-04-10T17:05:11.065Z [DEBUG] backend-s3.aws-base: Retrieving caller identity from STS: tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate
+2025-04-10T17:05:11.068Z [DEBUG] backend-s3.aws-base: HTTP Request Sent: aws.region=eu-west-1 rpc.method=GetCallerIdentity rpc.service=STS rpc.system=aws-api tf_aws.sdk=aws-sdk-go-v2 tf_aws.signing_region="" tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate http.url=https://sts.eu-west-1.amazonaws.com/ http.request_content_length=43 http.request.header.authorization="AWS4-HMAC-SHA256 Credential=AKIA************THHA/20250410/eu-west-1/sts/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-date, Signature=*****" http.request.header.amz_sdk_request="attempt=1; max=5"
+  http.request.body=
+  | Action=GetCallerIdentity&Version=2011-06-15
+   http.method=POST net.peer.name=sts.eu-west-1.amazonaws.com http.user_agent="APN/1.0 HashiCorp/1.0 Terraform/1.10.5 (+https://www.terraform.io) aws-sdk-go-v2/1.31.0 os/linux lang/go#1.23.3 md/GOOS#linux md/GOARCH#amd64 api/sts#1.31.0" http.request.header.x_amz_date=20250410T170511Z http.request.header.content_type=application/x-www-form-urlencoded http.request.header.amz_sdk_invocation_id=afd78541-8e9d-4ff2-b714-5bf8e852d842
+2025-04-10T17:05:12.016Z [DEBUG] backend-s3.aws-base: HTTP Response Received: aws.region=eu-west-1 rpc.method=GetCallerIdentity rpc.service=STS rpc.system=aws-api tf_aws.sdk=aws-sdk-go-v2 tf_aws.signing_region="" tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate http.duration=947 http.status_code=200 http.response_content_length=406 http.response.header.x_amzn_requestid=e7ed1f0b-6d29-4795-9daa-ca27d89805c0 http.response.header.content_type=text/xml http.response.header.date="Thu, 10 Apr 2025 17:05:12 GMT"
+  http.response.body=
+  | <GetCallerIdentityResponse xmlns="https://sts.amazonaws.com/doc/2011-06-15/">
+  |   <GetCallerIdentityResult>
+  |     <Arn>arn:aws:iam::585008053249:user/lab_works</Arn>
+  |     <UserId>AIDA*************SWVW</UserId>
+  |     <Account>585008053249</Account>
+  |   </GetCallerIdentityResult>
+  |   <ResponseMetadata>
+  |     <RequestId>e7ed1f0b-6d29-4795-9daa-ca27d89805c0</RequestId>
+  |   </ResponseMetadata>
+  | </GetCallerIdentityResponse>
+  
+2025-04-10T17:05:12.016Z [INFO]  backend-s3.aws-base: Retrieved caller identity from STS: tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate
+2025-04-10T17:05:12.016Z [DEBUG] backend-s3.aws-base: Retrieving caller identity from STS: tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate
+2025-04-10T17:05:12.018Z [DEBUG] backend-s3.aws-base: HTTP Request Sent: aws.region=eu-west-1 rpc.method=GetCallerIdentity rpc.service=STS rpc.system=aws-api tf_aws.sdk=aws-sdk-go-v2 tf_aws.signing_region="" tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate http.request_content_length=43 http.request.header.amz_sdk_request="attempt=1; max=5" http.request.header.x_amz_date=20250410T170512Z http.request.header.content_type=application/x-www-form-urlencoded http.request.header.amz_sdk_invocation_id=75741fa6-fdd7-408f-96a9-a21e492e71d4
+  http.request.body=
+  | Action=GetCallerIdentity&Version=2011-06-15
+   net.peer.name=sts.eu-west-1.amazonaws.com http.url=https://sts.eu-west-1.amazonaws.com/ http.user_agent="APN/1.0 HashiCorp/1.0 Terraform/1.10.5 (+https://www.terraform.io) aws-sdk-go-v2/1.31.0 os/linux lang/go#1.23.3 md/GOOS#linux md/GOARCH#amd64 api/sts#1.31.0" http.request.header.authorization="AWS4-HMAC-SHA256 Credential=AKIA************THHA/20250410/eu-west-1/sts/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-date, Signature=*****" http.method=POST
+2025-04-10T17:05:12.138Z [DEBUG] backend-s3.aws-base: HTTP Response Received: aws.region=eu-west-1 rpc.method=GetCallerIdentity rpc.service=STS rpc.system=aws-api tf_aws.sdk=aws-sdk-go-v2 tf_aws.signing_region="" tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate http.duration=119 http.status_code=200 http.response_content_length=406 http.response.header.content_type=text/xml http.response.header.date="Thu, 10 Apr 2025 17:05:12 GMT" http.response.header.x_amzn_requestid=569ed0e9-a82f-4074-82bd-55f3052b121e
+  http.response.body=
+  | <GetCallerIdentityResponse xmlns="https://sts.amazonaws.com/doc/2011-06-15/">
+  |   <GetCallerIdentityResult>
+  |     <Arn>arn:aws:iam::585008053249:user/lab_works</Arn>
+  |     <UserId>AIDA*************SWVW</UserId>
+  |     <Account>585008053249</Account>
+  |   </GetCallerIdentityResult>
+  |   <ResponseMetadata>
+  |     <RequestId>569ed0e9-a82f-4074-82bd-55f3052b121e</RequestId>
+  |   </ResponseMetadata>
+  | </GetCallerIdentityResponse>
+  
+2025-04-10T17:05:12.138Z [INFO]  backend-s3.aws-base: Retrieved caller identity from STS: tf_backend.operation=Configure tf_backend.req_id=d69b8c9e-7c8b-f3f4-a1b7-8d806bad5101 tf_backend.s3.bucket=dev-terraform-state tf_backend.s3.path=terraform.tfstate
+2025-04-10T17:05:12.141Z [DEBUG] backend-s3: HTTP Request Sent: aws.region=eu-west-1 aws.s3.bucket=dev-terraform-state rpc.method=ListObjectsV2 rpc.service=S3 rpc.system=aws-api tf_aws.sdk=aws-sdk-go-v2 tf_aws.signing_region="" tf_backend.operation=Workspaces tf_backend.req_id=9d07302a-281a-c420-10fe-a5805eb45369 tf_backend.s3.bucket=dev-terraform-state tf_backend.workspace-prefix=env:/ http.method=GET http.url="https://dev-terraform-state.s3.eu-west-1.amazonaws.com/?list-type=2&max-keys=1000&prefix=env%3A%2F" http.user_agent="APN/1.0 HashiCorp/1.0 Terraform/1.10.5 (+https://www.terraform.io) m/C aws-sdk-go-v2/1.31.0 os/linux lang/go#1.23.3 md/GOOS#linux md/GOARCH#amd64 api/s3#1.63.0" http.request.header.x_amz_date=20250410T170512Z http.request.header.amz_sdk_invocation_id=2e81c09b-3ee6-45ce-b4c4-a0145f83ede4 http.request.body="" net.peer.name=dev-terraform-state.s3.eu-west-1.amazonaws.com http.request.header.authorization="AWS4-HMAC-SHA256 Credential=AKIA************THHA/20250410/eu-west-1/s3/aws4_request, SignedHeaders=accept-encoding;amz-sdk-invocation-id;amz-sdk-request;host;x-amz-content-sha256;x-amz-date, Signature=*****" http.request.header.accept_encoding=identity http.request.header.amz_sdk_request="attempt=1; max=5" http.request.header.x_amz_content_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2025-04-10T17:05:12.988Z [DEBUG] backend-s3: HTTP Response Received: aws.region=eu-west-1 aws.s3.bucket=dev-terraform-state rpc.method=ListObjectsV2 rpc.service=S3 rpc.system=aws-api tf_aws.sdk=aws-sdk-go-v2 tf_aws.signing_region="" tf_backend.operation=Workspaces tf_backend.req_id=9d07302a-281a-c420-10fe-a5805eb45369 tf_backend.s3.bucket=dev-terraform-state tf_backend.workspace-prefix=env:/ http.duration=846 http.response.header.server=AmazonS3 http.response.header.location=https://amazonaws.com/badhttpredirectlocation http.response.header.date="Thu, 10 Apr 2025 17:05:12 GMT"
+  http.response.body=
+  | <?xml version="1.0" encoding="UTF-8"?>
+  | <Error><Code>PermanentRedirect</Code><Message>The bucket you are attempting to access must be addressed using the specified endpoint. Please send all future requests to this endpoint.</Message><Endpoint>s3.amazonaws.com</Endpoint><Bucket>dev-terraform-state</Bucket><RequestId>QV3D3NYG2CKE21DG</RequestId><HostId>rcMrCg1VxrvTu93+uBMjdBSJWWmJ0qf2Xc9moA1cagKMi/CHerkeX056J/aOybW8eLnUQvASocCj31973v77lA==</HostId></Error>
+   http.status_code=301 http.response.header.x_amz_bucket_region=us-east-1 http.response.header.x_amz_request_id=QV3D3NYG2CKE21DG http.response.header.x_amz_id_2="rcMrCg1VxrvTu93+uBMjdBSJWWmJ0qf2Xc9moA1cagKMi/CHerkeX056J/aOybW8eLnUQvASocCj31973v77lA==" http.response.header.content_type=application/xml
+2025-04-10T17:05:12.989Z [DEBUG] backend-s3: request failed with unretryable error https response error StatusCode: 301, RequestID: QV3D3NYG2CKE21DG, HostID: rcMrCg1VxrvTu93+uBMjdBSJWWmJ0qf2Xc9moA1cagKMi/CHerkeX056J/aOybW8eLnUQvASocCj31973v77lA==, requested bucket from "eu-west-1", actual location "us-east-1": aws.region=eu-west-1 aws.s3.bucket=dev-terraform-state rpc.method=ListObjectsV2 rpc.service=S3 rpc.system=aws-api tf_aws.sdk=aws-sdk-go-v2 tf_backend.operation=Workspaces tf_backend.req_id=9d07302a-281a-c420-10fe-a5805eb45369 tf_backend.s3.bucket=dev-terraform-state tf_backend.workspace-prefix=env:/
+2025-04-10T17:05:12.990Z [DEBUG] Module installer: begin ec2
+2025-04-10T17:05:12.992Z [DEBUG] Module installer: begin eks
+2025-04-10T17:05:12.993Z [DEBUG] Module installer: begin eks.eks
+2025-04-10T17:05:13.045Z [DEBUG] Module installer: begin eks.eks.eks_managed_node_group
+2025-04-10T17:05:13.064Z [DEBUG] Module installer: begin eks.eks.eks_managed_node_group.user_data
+2025-04-10T17:05:13.070Z [DEBUG] Module installer: begin eks.eks.fargate_profile
+2025-04-10T17:05:13.076Z [DEBUG] Module installer: begin eks.eks.kms
+2025-04-10T17:05:13.089Z [DEBUG] Module installer: begin eks.eks.self_managed_node_group
+2025-04-10T17:05:13.118Z [DEBUG] Module installer: begin eks.eks.self_managed_node_group.user_data
+2025-04-10T17:05:13.119Z [DEBUG] Module installer: begin s3_backend
+2025-04-10T17:05:13.120Z [DEBUG] Module installer: begin security_group
+2025-04-10T17:05:13.120Z [DEBUG] Module installer: begin vpc
+[31m╷[0m[0m
+[31m│[0m [0m[1m[31mError: [0m[0m[1mFailed to get existing workspaces: Unable to list objects in S3 bucket "dev-terraform-state" with prefix "env:/": operation error S3: ListObjectsV2, https response error StatusCode: 301, RequestID: QV3D3NYG2CKE21DG, HostID: rcMrCg1VxrvTu93+uBMjdBSJWWmJ0qf2Xc9moA1cagKMi/CHerkeX056J/aOybW8eLnUQvASocCj31973v77lA==, requested bucket from "eu-west-1", actual location "us-east-1"[0m
+[31m│[0m [0m
+[31m│[0m [0m[0m
+[31m╵[0m[0m
