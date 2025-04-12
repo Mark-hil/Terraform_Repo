@@ -87,9 +87,9 @@ variable "memory_request" {
 # Network Configuration
 #####################################
 variable "container_port" {
-  description = "Port that the container listens on (defaults to local.ports.app.container)"
+  description = "Port that the container listens on"
   type        = number
-  default     = null
+  default     = 80
 
   validation {
     condition     = var.container_port == null || (var.container_port > 0 && var.container_port < 65536)
@@ -98,9 +98,9 @@ variable "container_port" {
 }
 
 variable "service_port" {
-  description = "Port that the service listens on (defaults to local.ports.app.service)"
+  description = "Port that the service listens on"
   type        = number
-  default     = null
+  default     = 80
 
   validation {
     condition     = var.service_port == null || (var.service_port > 0 && var.service_port < 65536)

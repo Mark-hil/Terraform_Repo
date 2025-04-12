@@ -41,6 +41,10 @@ resource "aws_dynamodb_table" "locks" {
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 
+   point_in_time_recovery {
+    enabled = true
+  }
+
   attribute {
     name = "LockID"
     type = "S"
@@ -48,3 +52,32 @@ resource "aws_dynamodb_table" "locks" {
 
   tags = var.tags
 }
+
+# resource "aws_s3_bucket_policy" "state" {
+#   bucket = aws_s3_bucket.state.id
+
+#   policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Sid    = "DenyDelete"
+#         Effect = "Deny"
+#         Principal = "*"
+#         Action = [
+#           "s3:DeleteBucket",
+#           "s3:DeleteObject",
+#           "s3:DeleteObjectVersion"
+#         ]
+#         Resource = [
+#           aws_s3_bucket.state.arn,
+#           "${aws_s3_bucket.state.arn}/*"
+#         ]
+#         Condition = {
+#           StringNotLike = {
+#             "aws:PrincipalARN": ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/admin"]
+#           }
+#         }
+#       }
+#     ]
+#   })
+# }

@@ -31,3 +31,18 @@ variable "allowed_http_cidr_blocks" {
   type        = list(string)
   default     = ["0.0.0.0/0"]
 }
+
+#####################################
+# Port Configuration
+#####################################
+variable "ssh_port" {
+  description = "Port for SSH access"
+  type        = number
+  default     = 22
+}
+
+variable "http_port" {
+  description = "Port for HTTP access"
+  type        = number
+  default     = 80
+}

@@ -45,6 +45,10 @@ module "s3_backend" {
   tags                = local.common_tags
 }
 
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
 #####################################
 # Network Infrastructure
 #####################################
@@ -52,9 +56,10 @@ module "vpc" {
   source = "./modules/vpc"
 
   # VPC configuration
-  vpc_cidr   = var.vpc_cidr
-  env_prefix = var.env_prefix
-  tags       = local.common_tags
+  vpc_cidr           = var.vpc_cidr
+  env_prefix         = var.env_prefix
+  tags               = local.common_tags
+  availability_zones = data.aws_availability_zones.available.names
 }
 
 #####################################
@@ -113,21 +118,21 @@ resource "aws_cloudwatch_log_group" "eks_logs" {
 }
 
 # Kinesis Firehose for CloudWatch Logs to S3
-resource "aws_kinesis_firehose_delivery_stream" "eks_logs" {
-  name        = "${var.env_prefix}-eks-logs-to-s3"
-  destination = "s3"
+# resource "aws_kinesis_firehose_delivery_stream" "eks_logs" {
+#   name        = "${var.env_prefix}-eks-logs-to-s3"
+#   destination = "s3"
 
-  s3_configuration {
-    role_arn   = aws_iam_role.firehose.arn
-    bucket_arn = "${module.s3_backend.bucket_arn}/logs"
+#   s3_configuration {
+#     role_arn   = aws_iam_role.firehose.arn
+#     bucket_arn = "${module.s3_backend.bucket_arn}/logs"
 
-    buffer_size        = 5
-    buffer_interval    = 300
-    compression_format = "GZIP"
-  }
+#     buffer_size        = 5
+#     buffer_interval    = 300
+#     compression_format = "GZIP"
+#   }
 
-  tags = local.common_tags
-}
+#   tags = local.common_tags
+# }
 
 #####################################
 # Kubernetes Application
@@ -144,8 +149,8 @@ module "k8s" {
   namespace       = "app"
   app_name        = "poll-app"
   container_image = "godcandidate/qr-code-app:latest"
-  container_port  = local.ports.app.container
-  service_port    = local.ports.app.service
+  container_port  = 80
+  service_port    = 80
   service_type    = "LoadBalancer"
 
   # Health check and scaling
@@ -158,5 +163,5 @@ module "k8s" {
     APP_NAME = "poll-app"
   }
 
-  depends_on = [module.eks]
+  # depends_on = [module.eks]
 }

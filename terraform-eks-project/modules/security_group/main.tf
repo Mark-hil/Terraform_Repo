@@ -25,8 +25,8 @@ resource "aws_security_group" "main" {
 #####################################
 resource "aws_security_group_rule" "ssh" {
   type              = "ingress"
-  from_port         = local.port_ranges.ssh.from
-  to_port           = local.port_ranges.ssh.to
+  from_port         = var.ssh_port
+  to_port           = var.ssh_port
   protocol          = "tcp"
   cidr_blocks       = var.allowed_ssh_cidr_blocks
   security_group_id = aws_security_group.main.id
@@ -35,8 +35,8 @@ resource "aws_security_group_rule" "ssh" {
 
 resource "aws_security_group_rule" "http" {
   type              = "ingress"
-  from_port         = local.port_ranges.http.from
-  to_port           = local.port_ranges.http.to
+  from_port         = var.http_port
+  to_port           = var.http_port
   protocol          = "tcp"
   cidr_blocks       = var.allowed_http_cidr_blocks
   security_group_id = aws_security_group.main.id
@@ -48,8 +48,8 @@ resource "aws_security_group_rule" "http" {
 #####################################
 resource "aws_security_group_rule" "egress" {
   type              = "egress"
-  from_port         = local.port_ranges.all.from
-  to_port           = local.port_ranges.all.to
+  from_port         = 0
+  to_port           = 0
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.main.id

@@ -91,7 +91,7 @@ resource "kubernetes_deployment" "app" {
 
           # Container port
           port {
-            container_port = coalesce(var.container_port, local.ports.app.container)
+            container_port = var.container_port
             name          = "http"
           }
 
@@ -99,7 +99,7 @@ resource "kubernetes_deployment" "app" {
           readiness_probe {
             http_get {
               path = var.health_check_path
-              port = coalesce(var.container_port, local.ports.app.container)
+              port = var.container_port
             }
             initial_delay_seconds = 10
             period_seconds        = 5
@@ -111,7 +111,7 @@ resource "kubernetes_deployment" "app" {
           liveness_probe {
             http_get {
               path = var.health_check_path
-              port = coalesce(var.container_port, local.ports.app.container)
+              port = var.container_port
             }
             initial_delay_seconds = 60
             period_seconds        = 10

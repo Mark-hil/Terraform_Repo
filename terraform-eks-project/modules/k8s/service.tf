@@ -20,8 +20,8 @@ resource "kubernetes_service" "app" {
     # Service port configuration
     port {
       name        = "http"
-      port        = coalesce(var.service_port, local.ports.app.service)
-      target_port = coalesce(var.container_port, local.ports.app.container)
+      port        = var.service_port
+      target_port = var.container_port
       protocol    = "TCP"
     }
 

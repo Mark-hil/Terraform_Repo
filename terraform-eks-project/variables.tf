@@ -11,6 +11,11 @@ variable "aws_region" {
     error_message = "Must be a valid AWS region name."
   }
 }
+variable "availability_zones" {
+  description = "List of availability zones for subnet creation"
+  type        = list(string)
+  default     = [] # Will be populated by data source
+}
 
 variable "env_prefix" {
   description = "Environment prefix for all resources (dev/stage/prod)"
@@ -80,44 +85,18 @@ variable "cluster_name" {
 #####################################
 # Port Configuration
 #####################################
-locals {
-  # Standard ports
-  ports = {
-    # HTTP ports
-    http = {
-      container = 80
-      service   = 80
-    }
-    # SSH port
-    ssh = 22
-    # Application ports
-    app = {
-      container = 80
-      service   = 80
-    }
-    # Health check ports
-    health = {
-      container = 80
-      service   = 80
-    }
-  }
+# locals {
+#   # Common tags for all resources
+#   common_tags = {
+#     Environment = var.env_prefix
+#     Project     = var.project_name
+#     Terraform   = "true"
+#     ManagedBy   = "terraform"
+#   }
 
-  # Port ranges
-  port_ranges = {
-    all = {
-      from = 0
-      to   = 0
-    }
-    http = {
-      from = 80
-      to   = 80
-    }
-    ssh = {
-      from = 22
-      to   = 22
-    }
-  }
-}
+#   # Cluster name with fallback
+#   cluster_name = coalesce(var.cluster_name, "${var.env_prefix}-cluster")
+# }
 
 #####################################
 # Tags Configuration
@@ -127,3 +106,12 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+# #####################################
+# # Network Configuration
+# #####################################
+# variable "availability_zones" {
+#   description = "List of availability zones for subnet creation"
+#   type        = list(string)
+#   default     = [] # Will be populated by data source
+# }

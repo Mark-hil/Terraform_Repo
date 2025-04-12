@@ -100,7 +100,7 @@ output "cloudwatch_log_group" {
   value       = aws_cloudwatch_log_group.eks_logs.name
 }
 
-output "firehose_stream" {
-  description = "Name of the Kinesis Firehose delivery stream for logs"
-  value       = aws_kinesis_firehose_delivery_stream.eks_logs.name
-}
+# output "firehose_stream" {
+#   description = "Name of the Kinesis Firehose delivery stream for logs"
+#   value       = aws_kinesis_firehose_delivery_stream.eks_logs.name
+# }
